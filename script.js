@@ -1,13 +1,14 @@
 // SIGN UP
 function signupUser() {
-    let user = {
-        name: name.value,
-        email: email.value,
-        password: password.value,
+    const user = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
         orders: []
     };
+
     localStorage.setItem("user", JSON.stringify(user));
-    alert("Account created!");
+    alert("Account created successfully!");
     window.location.href = "index.html";
     return false;
 }
@@ -87,15 +88,24 @@ function completeOrder() {
 // PROFILE
 function loadProfile() {
     let user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user || !user.name) {
+        document.getElementById("username").innerText =
+            "Welcome, Guest";
+        return;
+    }
+
     document.getElementById("username").innerText =
         "Welcome, " + user.name;
 
     let ordersDiv = document.getElementById("orders");
 
-    if (user.orders.length === 0) {
+    if (!user.orders || user.orders.length === 0) {
         ordersDiv.innerHTML = "<p>No past purchases.</p>";
         return;
     }
+
+    ordersDiv.innerHTML = "";
 
     user.orders.forEach(order => {
         let html = `<p><strong>${order.date}</strong></p>`;
