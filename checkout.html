@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Velora | Checkout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- ✅ PAYSTACK SCRIPT -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body class="cart-body">
+
+<h1>Checkout</h1>
+
+<div class="cart">
+
+    <!-- ✅ FORMSPREE FORM -->
+    <form id="orderForm"
+          action="https://formspree.io/f/abcdwxyz"
+          method="POST">
+
+        <input name="name" placeholder="Full Name" required>
+        <input name="address" placeholder="Address" required>
+        <input name="email" type="email" placeholder="Email" required>
+
+        <!-- ✅ RECEIPT + EMAIL SETTINGS (ADDED) -->
+        <input type="hidden" name="_subject" value="Velora Order Receipt">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_replyto" id="replyTo">
+
+        <!-- Hidden cart data -->
+        <input type="hidden" name="order" id="orderData">
+        <input type="hidden" name="amount" id="orderAmount">
+
+        <!-- Paystack triggers payment -->
+        <button type="button" onclick="payWithPaystack()">
+            Pay & Place Order
+        </button>
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+    // Load cart into hidden input for Formspree
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("orderData").value = JSON.stringify(cart);
+
+    let total = cart.reduce((sum, item) =>
+        sum + item.price * item.qty, 0
+    );
+    document.getElementById("orderAmount").value = total;
+
+    // PAYSTACK PAYMENT
+    function payWithPaystack() {
+        let emailInput =
+            document.querySelector('input[name="email"]').value;
+
+        if (!emailInput) {
+            alert("Please enter your email");
+            return;
+        }
+
+        // ✅ Set reply-to email for receipt
+        document.getElementById("replyTo").value = emailInput;
+
+        let handler = PaystackPop.setup({
+            key: 'pk_test_xxxxxxxxxxxxx', // 🔴 YOUR PAYSTACK PUBLIC KEY
+            email: emailInput,
+            amount: total * 100, // kobo
+            currency: 'NGN',
+
+            callback: function () {
+                // ✅ Send receipt email
+                document.getElementById("orderForm").submit();
+
+                // ✅ Save order to profile
+                completeOrder();
+
+                // ✅ Redirect to success page
+                window.location.href = "success.html";
+            }
+        });
+
+        handler.openIframe();
+    }
+</script>
+
+</body>
+</html>

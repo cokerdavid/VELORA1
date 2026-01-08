@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Velora | Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="shop-body">
+
+<header>
+    <h1>VELORA</h1>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <nav id="menu">
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart</a>
+    <a href="profile.html">Profile</a>
+    <a href="index.html">Logout</a>
+</nav>
+</header>
+
+<section class="shop-container">
+
+    <div class="product">
+        <img src="https://via.placeholder.com/300x350">
+        <h3>Classic Jacket</h3>
+        <p>$120</p>
+        <button onclick="addToCart('Classic Jacket',120)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/300x350">
+        <h3>Premium T-Shirt</h3>
+        <p>$45</p>
+        <button onclick="addToCart('Premium T-Shirt',45)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="https://via.placeholder.com/300x350">
+        <h3>Denim Jeans</h3>
+        <p>$85</p>
+        <button onclick="addToCart('Denim Jeans',85)">Add to Cart</button>
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Velora | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+
+<div class="login-container">
+    <h1>VELORA</h1>
+
+    <form onsubmit="return loginUser()">
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <button>Login</button>
+    </form>
+
+    <!-- ✅ ADDED: CREATE PROFILE LINK -->
+    <p style="text-align:center; margin-top:15px;">
+        New here?
+        <a href="signup.html" style="color:#8b1e3f; font-weight:600;">
+            Create Profile
+        </a>
+    </p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
