@@ -1,38 +1,44 @@
 * {
-    font-family: Poppins, sans-serif;
+    font-family: "Poppins", sans-serif;
     box-sizing: border-box;
 }
 
-body { margin: 0; }
-
-/* COLORS */
-:root {
-    --primary: #8b1e3f;
-    --dark: #1c1c1c;
-    --light: #f5f1ed;
+body {
+    margin: 0;
+    color: #2b2b2b;
 }
 
-/* LOGIN */
+/* ===================== BRAND COLORS ===================== */
+:root {
+    --primary: #6d1f3f;   /* muted burgundy */
+    --dark: #1f1f1f;      /* charcoal */
+    --light: #f7f5f2;     /* luxury off-white */
+    --accent: #c9a46c;    /* soft gold */
+}
+
+/* ===================== LOGIN ===================== */
 .login-body {
     height: 100vh;
-    background: linear-gradient(120deg, var(--primary), var(--dark));
+    background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .login-container {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 300px;
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    text-align: center;
 }
 
-/* HEADER */
+/* ===================== HEADER ===================== */
 header {
     background: var(--dark);
     color: white;
-    padding: 15px;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,69 +46,114 @@ header {
 
 nav {
     display: flex;
-    gap: 15px;
+    gap: 20px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s ease;
 }
 
-/* HAMBURGER */
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* ===================== HAMBURGER ===================== */
 .hamburger {
     display: none;
     font-size: 28px;
     cursor: pointer;
 }
 
-/* SHOP */
-.shop-body { background: var(--light); }
+/* ===================== SHOP ===================== */
+.shop-body {
+    background: var(--light);
+}
 
 .shop-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    padding: 32px;
 }
 
+/* ===================== PRODUCT CARD ===================== */
 .product {
     background: white;
-    padding: 15px;
-    border-radius: 12px;
+    border-radius: 18px;
+    padding: 16px;
     text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.25s ease;
 }
 
-/* CART */
+.product:hover {
+    transform: translateY(-5px);
+}
+
+/* ✅ IMAGE FIX (THIS SOLVES YOUR ISSUE) */
+.product img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.product h3 {
+    margin: 10px 0 6px;
+    font-size: 18px;
+}
+
+.product p {
+    margin: 0 0 12px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* ===================== CART / CHECKOUT ===================== */
 .cart-body {
     background: var(--light);
-    padding: 20px;
+    padding: 30px;
 }
 
 .cart {
     background: white;
     max-width: 600px;
     margin: auto;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
 }
 
 .item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 }
 
-/* BUTTON */
+/* ===================== BUTTON ===================== */
 button {
     background: var(--primary);
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* MOBILE */
+button:hover {
+    background: #54162f;
+    transform: translateY(-2px);
+}
+
+/* ===================== MOBILE ===================== */
 @media (max-width: 768px) {
     nav {
         display: none;
@@ -111,7 +162,8 @@ button {
         position: absolute;
         top: 60px;
         right: 0;
-        width: 150px;
+        width: 180px;
+        padding: 10px;
     }
 
     nav.show {
@@ -121,4 +173,27 @@ button {
     .hamburger {
         display: block;
     }
+}
+
+/* ===================== WHATSAPP ===================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    width: 56px;
+    height: 56px;
+    background-color: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+}
+
+.whatsapp-float img {
+    width: 32px;
+    height: 32px;
+}
+
 }
